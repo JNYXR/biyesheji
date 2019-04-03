@@ -1,0 +1,330 @@
+2019年1月7日星期一
+LINUX，只有一个树形结构，所有的文件、分区都是存在于一个树形结构中。在这个结构中，最上层的是根目录，其余所有的目录、文件、分区都是在根目录下建立的。可以通过ls-l命令查看整个根目录的文档。
+/bin/ 用于存放基本系统的可执行文件
+/boot/ 引导目录，用于存放系统引导程序
+/dev/ 设备目录，Linux中，所有的设备都被视为文件
+/etc/ 系统配置文件存放目录
+/home/ 用户目录
+/lib/ 基本系统的动态链接库存放位置
+/lost+found/ 分区系统的目录
+……..
+Linux常用命令：
+	 cd 目标目录路径。切换当前工作目录
+	 ls<目标目录路径>。显示目录与文件
+	 lmkdir 目录名称。建立目录
+tar xf 文件名。解压tar文件
+tar cf 文件名.tar 文件名。打包tar文件
+unzip文件名。解压ZIP文件
+apt常用指令：
+	apt-get upgrade 更新系统中所有的包到最新版
+	apt-get install(软件包名) 安装软件包
+	apt-get  --reinstall install 重新安装软件包
+	apt-get remove(软件包名) 卸载软件包
+	apt-get --purge remove 卸载软件包并清除它产生的配置文件
+	apt-get clean 清除已下载的软件包文件
+2019年1月8日星期二
+收到树莓派3B+开发板，SSH连接
+http://www.shumeipaiba.com/wanpai/jiaocheng/20.html 主要难点在于IP地址的获取
+http://www.raspigeek.com/index.php?c=read&id=72&page=1
+http://www.raspigeek.com/index.php?c=read&id=51&page=1 （摄像头的启用）
+安装Ubuntu16.04系统
+SD卡需要格式化为FAT32格式
+2019年1月9日星期三
+http://forum.ubuntu.org.cn/viewtopic.php?t=488470   Ubuntu图形化界面显示配置步骤
+https://jingyan.baidu.com/article/642c9d341b3ccb644a46f7ac.html  GDebi工具安装搜狗输入法
+
+2019年1月10日星期四
+深度学习：
+	GPU 显存和带宽是主要影响训练能力的因素   快速训练  可使用多个GPU并行计算
+	GLM（GeneralizedLinear Model，广义线性模型）编码法，不同亚属会分别得到各自不同的斜率，或者说权重；同时截距项也可以分别得到不同亚属对应的估计值。GLM编码法在机器学习领域被称为One Hot编码法。
+尝试升级树莓派内核（指令升级）
+下载了两个东西：1.  raspberry kernel 33M
+				2.  raspberry	bootloader 3M多点
+2019年1月11日星期五
+树莓派raspbian系统自带python3开发环境
+	终端输入python3 进入python交互式shell，输入exit（）退出
+	Python的基本数据类型
+	float 浮点数
+	int 整数
+	long	长整数
+	str 字符串或字符串常量
+	input输入的默认字符型，可以用int强制转换 
+	
+2019年1月13日星期日
+	Python支持分数运算，需要导入fractions模块
+	例：from fractions import Fraction
+	    a = Fraction(1,3)   #a = 1/3
+		a = Fraction(0.5)   #a = 1/2
+	python支持使用复数
+	创建复数：a=complex(1,2)  #a=1+2j
+	Python的math模块：
+	必须先import math
+    
+Python支持数组操作：
+	NumPy数据类型
+If-else：注意缩进规则
+测试变量是否能转换成数字
+	x=”35”
+	x.isdigit()
+返回ture
+for循环：
+	for i in [1,2,3,4]:
+或者for i in range(1,5):
+或者for i in range(0,9,2):
+While循环
+	While … :
+2019年1月15日星期二
+元组操作，用括号括起来。不可修改
+列表操作，用方括号括起来，可修改，可用del删除列表元素，pop函数弹出列表，
+如list1.pop（索引），打印的同属删除，如果索引为空，则弹出最后一个元素
+append（）函数增加元素，增加在末尾
+insert（索引）函数插入元素
+extend（）连接列表
+count（）查找元素在列表中出现的次数
+sort（）对列表排序，也可list2=sorted(list1) #不改变list1
+index（）返回查找元素的索引，第一次出现的位置
+reverse（）反转元素的顺序,也可list2=reversed(list1) #不改变list1
+可以使用pop和append作为栈操作列表
+元组和列表都可以以-1作为索引从尾部取值
+多维列表操作：list1=[1,2],[1,2,3],[1,2,3,4] #每一行的元素数目可不一
+列表解析创建列表：
+List1=[1,2,3,4]
+List2=[x*2 for x in list1]  #list2变为[2,4,6,8]
+
+List1=[‘a’,’b’,’c’,’d’]
+List2=[x.upper()  for x in list1]  #list2变为[‘A’,’B’,’C’,’D’]
+Range数据类型
+ Range1=range(0,5,2)
+ For x in Range1:
+	Print(x)
+结果：0，2，4
+列表不能用于矩阵运算，矩阵用NumPy
+2019年1月16日星期三
+字典操作：
+创建字典用大括号，填充字典两种方法。初始化时创建，a={key1：value1，key2：value2.。。}
+添加：a[key1]=value1。
+字典存储是无序的。
+可用del a[key1]删除元素。
+ 
+集合操作：
+创建集合 a=set([1,2,3])
+检查集合成员：if b in a：
+并集 union（）
+交集 intersection（）
+差集 a-b  	c=a.defference(b)
+对称差集 	a：1，2，3，4  b:1,5,6,8  a.symmetric_difference(b) = 2,3,4,5,6,8
+添加元素 a.update([1,2],…)
+删除元素 a.remove([1]) #如果没有该元素会报错 a.discard([1]) #没有该元素也不会报错
+一次只能删除一个元素
+
+
+
+2019年1月17日星期四
+文件操作：
+文件目录：绝对目录，相对目录
+Import os
+os.chdir(‘目录’) 更改当前目录
+os.mkdir(‘目录’) 创建目录
+os.getcwd() 获取当前目录
+Python操作文件：
+利用os模块管理文件和目录，需要先 import os
+打开文件：open函数
+读取文件：read（）读取整个文件，readline（）逐行读取，seek（）重定位文件指针可以实现不按顺序读取文件
+关闭文件：close（）
+写文件：write（），写模式’w’，附加模式’a’
+2019年1月18日星期五
+函数操作：
+创建函数：def name():
+使用函数：name()
+元组作形参：name(*arg)
+字典做形参：name(**kwargs)
+在函数中处理全局变量x，需要在函数中声明：gloal x
+列表做形参：name(list1)
+2019年1月19日星期六
+模块操作：
+模块是函数的集合，一个模块中包含多个函数，函数也称模块里的方法。模块需要导入，如math模块，os模块。也可以将一组模块收集在一起，叫包。
+创建自定义模块：必须以.py结尾，就像创建py文件一样创建。
+使用自定义模块：工作目录必须与自定义的模块工作目录一致，或者将模块放入生产目录
+面向对象编程：
+使用类来定义对象：类包括属性和方法
+定义类：class name:
+创建实例；name_1=name()
+类方法：设值方法、访问方法、辅助方法
+设值方法：函数名以set_开头改变类的属性的值，形参self表示对象的当前实例，属性名以两个__开头的表示私有属性，按照python标准，不准在类定义之外使用它
+访问方法：函数名以get_开头，用来访问类的属性的值
+辅助方法：
+1.	构造函数：__init__()，创建实例的时候会调用，可以初始化属性，如
+def __init__(self,x,y,z):
+			self.x=x
+			self.y=y
+…..
+创建实例时：name1=name(1,2,3)
+2．自定义输出:__str__()，print（name_1）时会调用，可以辅助打印
+3.删除类实例：析构函数： __del__(self)
+4.为类编写文档
+5.辅助方法property()：
+
+2019年1月22日星期二
+使用继承：
+给基类创建子类；class zilei(jilei):
+不变属性在init里设值，可变属性用get设值
+把基类放到一个对象模块文件中子类放入其他模块文件。
+多态：是子类拥有与基类同名的方法的能力，也叫重写方法，使用base_class.method或者zilei.method可以访问基类和子类的重名方法。
+正则表达式：过滤文本的模式
+Python提供了re模块来支持正则表达式
+1．match()函数:用正则表达式来匹配一个文本字符串，从字符串开头的位置开始匹配，也就是说从第一个字符开始比对。
+2.search()函数: 用正则表达式来匹配一个文本字符串，可以将正则表达式应用于整个字符串3.findall()和finditer():将匹配的字符串作为列表或者迭代器返回
+编译正则表达式：使用compile（）函数
+   
+
+
+2019年1月24日星期四
+树莓派安装tensorflow：
+sudo apt install libatlas-base-dev
+pip3 install tensorflow
+重装mock：sudo pip3 uninstall mock
+			sudo pip3 install mock
+测试：import tensorflow as tf
+tf.enable_eager_execution()
+hello = tf.constant(‘Hello, TensorFlow!’)
+print(hello)
+由于tensorflow版本不同,可能一些函数的调用也有变换,这时候可能需要查看tensorflow版本,可以在终端输入查询命令如下:
+
+Python3
+
+import tensorflow as tf
+
+tf.__version__
+
+查询tensorflow安装路径为:
+
+tf.__path__
+
+2019年1月26日星期六
+TensorFlow是Google推出的一套深度学习系统，使用其灵活易用的前端语言可以轻松地构建各种复杂的算法模型，后端高效的执行系统与分布式架构保证了在模型训练和执行方面的高性能。综合来看，TensoFlow是目前业界最优秀的深度学习系统之一。
+Google Brain团队总结出了对于深度学习系统的几点核心要求：
+1.	要具有灵活的表达能力，能够快速实现各种算法
+2.	高执行性能，具有分布式扩展性
+3.	跨平台可移植性
+4.	实验可复现性
+5.	支持快速产品化，模型可随时部署                                            
+TensorFlow是一个基于计算图（也称数据流图）的数值计算系统，计算图是一个有向图，图中的节点代表数字计算操作的算子，节点之间连接的边代表参与计算的高维数组数据，叫做Tensor。计算图的执行可以看作数据tensor按照图的拓扑顺序，从输入节点逐步流过所有中间节点，最后流到输出节点的过程，TensorFlow的名字由此而来。
+2019年1月27日星期日
+Tensor代表多维数组，对应神经网络计算中的高维矩阵。
+Session会话：是驱动TensorFlow系统执行计算交互的入口。
+TensorFlow系统架构：拥有“client->master->worker”架构的分布式系统。在一般的执行流程中，客户端通过会话tf.Senssion接口与master进行通信，并向master提交触发执行的请求，master将执行任务分配到一个或多个worker进程上，执行的结果通过master返回给客户端。其中，worker是最终负责执行计算的角色，每一个worker进程都会管理和使用计算机上的计算硬件设备资源，包括一块或多块CPU和GPU，来处理计算子图的运算过程。
+TensorFlow源码结构：
+后端执行引擎(C++):
+1．	系统框架：主要实现TensorFlow系统的基本运行方式。
+2．	计算图：主要实现了计算图模型的数据结构，包括节点Node，边Edge，图Graph等类的定义，以及图的遍历算法和在布置节点时所需的代价模型
+3．	算子声明与内核实现：计算操作在硬件上的具体代码实现被称为内核，这个实现与计算平台相关，也就是说，同样的计算操作在CPU和GPU上的运行代码时不同的。对于CPU计算而言，数值计算会基于Eigen库。而对于GPU，计算会基于Nvidia的CUDA库来完成。
+4．	前后端交互接口
+5．	运行时：在分布式运行时模块中，主要实现了master和worker两个服务，以及执行调度器。
+6．	操作系统平台
+7．	TFRecord数据的格式定义类Example
+前端语言接口：最主要的作用是利用宿主语言的优势对client进行封装，使得系统更加易用。
+常用python库：
+1.	NumPy，提供N维数组结构，常用的线性代数运算
+2.	pandas，高性能数据结构和数据分析工具，可以自动对齐、补全数据，免去由于输入数据缺失导致的问题。
+3.	Matplotlib，功能强大的画图引擎，曲线图、散点图。。。
+4.	PIL，标准图片处理库
+5.	IPython&Jupyter，开源的交互式数据分析处理平台
+6.	scikit-learn，机器学习工具库
+7.	OpenCV，跨平台机器视觉工具库
+安装python库：pip3 install –user 库名
+归一化：将数值换算到[0,1]的取值范围内。
+2019年1月28日星期一
+Titanic问题：
+1.	数据读入及预处理
+2.	构建计算图
+3.	构建训练迭代过程，Session启动后就正式进入了训练过程
+4.	执行训练
+5.	存储和加载模型函数
+6.	预测测试数据结果
+2019年1月29日星期二
+数据挖掘的技巧：
+1.	首先通过数据可视化，利用图形的方式更直观的感受数据，建立起足够的先验经验
+2.	然后利用特征工程方法筛选相关度最高的特征组合
+3.	最后将特征代入多种分类器进行试验，检验不同方法在同一问题上的表现
+2019年1月30日星期三
+TensorBoard可视化：
+记录事件数据，包括标量数据，参数数据，图像数据，音频数据，计算图结构
+2019年1月31日星期四
+数据读取：
+三种数据加载的方式：
+1.	用python代码为tensorflow供给数据
+2.	在构建计算图的开始部分，利用管道从文件中读取数据
+3.	预先加载数据，用常量或者变量将数据保持在内存中（仅适用于小数据）
+直接加载到内存或者显存中的数据文件格式：csv,npy,nzp,pkl,hdf
+TFRecord：tensorflow使用的大数据文件
+SKFlow与TFlearn:仿照Scikit-Learn设计的高级API，其中对多种常用的分类回归模型进行了封装。
+TF-Slim：轻量级的高级接口库，使用这个库可以让复杂模型的定义、训练、评估都变得简单。在图形模型方面有较大的优势，它包含了很多新的层（如Atrous卷积层）和新的评估标准（如mAP、IoU），还内置了包括AlexNet、inception、VGGNet、OverFeat、ResNets在内的各种经典图像识别模型。
+2019年2月6日星期三
+卷积的数学意义： 
+卷积滤波：卷积其实是图像处理中一种常用的线性滤波方法，使用卷积可以达到图像降噪、锐化等多种滤波效果。卷积核依次滑过图片中每一个像素的位置，就可以输出一张分辨率不变的新图片。从数学上说，就是求两个矩阵的滑动点积或者滑动内积。所谓的卷积核，实际就是一个权值矩阵，表示如何单个像素与其领域像素之间的关系。卷积核中各个元素的相对差值越小，相当于每个像素与周围的像素取了个平均值，就越有模糊降噪的效果。而卷积核元素的差值越大，就拉大了每个像素与周围像素的差距，也就越能提取边缘，或者达到锐化的效果。
+  
+卷积神经网络：不需要人造卷积核，通过大量的图片让程序自己训练学习卷积核参数。
+  
+卷积层：提取特征，根据卷积核的个数确定提取的特征的个数，升维操作
+池化：
+ 
+ReLU：CNN模型首选必备的激活函数
+Dropout：防止过拟合
+2019年2月7日星期四
+AlexNet模型：8层神经元组成，其中前5层为卷积层，用于提取图形特征，后3层为全连接层，用于图像分类。
+ 
+2019年2月9日星期六
+VGGNets：以AlexNet为基础，尝试建立了一个层次更多、深度更深的网络。其网络结构一样可以由8个层次所构成，也是5组卷积层，3层全连接层。最主要区别在于，VGGNet的每个卷积层并不是只做一次卷积操作，而是连续卷积2~4次。
+2019年2月11日星期一
+安装tensorlayer
+Pip3 install tensorlayer --user
+后需要安装python3-tk
+更新 sudo apt-get update
+
+sudo apt-get install python3-tk
+
+sudo apt-get install –f
+pip install tensorflow==1.4.0（安装指定版本）
+2019年2月24日星期日
+Ubuntu：
+Sudo apt install ubuntu-desktop,安装完成,reboot,成功进入桌面
+pip3 install opencv-python –user 安装opencv
+vncserver -geometry 1920x1080
+sess.run 数据太大 跑崩   改为一次输入一张图，ok
+2019.03.31
+缺少gmp.h：apt-get install  libgmp3-dev
+安装gcc：https://www.cnblogs.com/RichardYao/p/10247209.html
+
+2019.04.03
+Linux删除指令:https://www.cnblogs.com/scplee/p/5478992.html
+内核编译: https://blog.csdn.net/a04081122/article/details/54863579
+毕业设计论文框架：
+1.	摘要
+2.	绪论
+2.1研究背景及意义
+2.2国内外研究现状
+2.3本文研究内容（对象及实现）
+3.  技术背景
+	3.1tensorflow+opencv
+	3.2卷积神经网络
+	3.3改进的VGG16
+	3.4通道裁剪
+	3.5树莓派平台linux内核裁剪
+	3.6NCS神经计算棒
+4.  实施
+	4.1平台搭建
+	4.2环境配置
+	4.3网络搭建
+	4.4训练模型
+	4.5模型裁剪
+	4.6迭代训练
+	4.7内核裁剪
+	4.8神经计算棒加速
+5.  研究成果
+	5.1改进的网络对比
+	5.2裁剪前后速度对比以及准确率
+	5.3内核裁剪加速效果
+	5.4神经加速棒加速效果
+6.  总结与展望
+7.  参考文献
+8.  致谢
