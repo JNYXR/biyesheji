@@ -328,3 +328,32 @@ Linux删除指令:https://www.cnblogs.com/scplee/p/5478992.html
 6.  总结与展望
 7.  参考文献
 8.  致谢
+2019.04.04
+树莓派系统鼠标键盘驱动开启宏：CONFIG_INPUT_MOUSE=y
+CONFIG_KEYBOARD_ATKBD=y
+总结内核移植步骤:
+1.	拉取linux源码：git clone --depth=1 -b rpi-4.15.y https://github.com/raspberrypi/linux.git
+2.	拉取编译工具：git clone https://github.com/raspberrypi/tools
+3.	开始编译：
+命令1：kERNAL=kernel7
+命令2：make ARCH=arm CROSS_COMPILE=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- bcm2709_defconfig(注意tools的路径)
+命令3：make ARCH=arm CROSS_COMPILE=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- zImage modules dtbs -j8
+4.	插上SD卡，挂载文件系统
+插上之后输入mount命令，查看sd卡两个分区对应的设备文件，如dev/sdc1和dev/sdc2
+在mnt目录下建立fat32和ext4目录，然后开始挂载：
+sudo mount /dev/sdc1 mnt/fat32
+sudo mount /dev/sdc2 mnt/ext4
+5.	安装模块（很重要）在root模式下执行
+先进入root：su root 如果失败，先执行sudo passwd root设置root密码，再su root
+在linux目录下执行命令sudo make ARCH=arm CROSS_COMPILE=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf- INSTALL_MOD_PATH=../../../../mnt/ext4 modules_install （ext4的路径）
+6.	移植（在根目录下执行命令）
+6.1	备份内核sudo cp mnt/fat32/kernel7.img mnt/fat32/kernel7-backup.img
+6.2	移植内核sudo home/ubuntu/raspberry_kernel_4.15/linux/scripts/mkknlimg home/ubuntu/raspberry_kernel_4.15/linux/arch/arm/boot/zImage mnt/fat32/kernel8.img
+6.3	复制dtb：sudo cp home/ubuntu/raspberry_kernel_4.15/linux/arch/arm/boot/dts/*.dtb mnt/fat32/
+sudo cp home/ubuntu/raspberry_kernel_4.15/linux/arch/arm/boot/dts/overlays/*.dtb* mnt/fat32/overlays/（主要是dtbo）
+sudo cp home/ubuntu/raspberry_kernel_4.15/linux/arch/arm/boot/dts/overlays/README mnt/fat32/overlays/
+7.	将fat32目录下kernel8改为kernel7（重命名）（kernel.img是树莓派1用的，二代以后cpu是arm v7架构，内核名字被配置成了kernel7.img ！）
+8.	卸除文件系统
+sudo umount mnt/ext4
+sudo umount mnt/fat32
+9.	开机启动
