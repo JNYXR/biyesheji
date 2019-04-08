@@ -357,3 +357,26 @@ sudo cp home/ubuntu/raspberry_kernel_4.15/linux/arch/arm/boot/dts/overlays/READM
 sudo umount mnt/ext4
 sudo umount mnt/fat32
 9.	开机启动
+2019.04.08
+内核裁剪记录：
+Enable loadable module support(可加载模块)
+[ ]Module versioning suppor，这个功能可以让你使用其它版本的内核模块，除非特殊需要，一般不选。
+
+[ ]Source checksum for all modules，这个功能是为了防止更改了内核模块的代码但忘记更改版本号而造成版本冲突,现在很少使用，不选。
+Networking support
+	Networking options —>，网络选项
+< > Transformation user configuration interface，为IPsec(可在ip层加密)之类的工具提供XFRM 用户配置接口支持，不清楚可以不选。
+[ ] IP: policy routing，策略路由，不清楚可以不选。
+[] IP: advanced router，高级路由功能，做路由器的话选上，可以不选。
+[ ] IP: kernel level autoconfiguration，内核启动时自动配置IP地址、路由表等，需要从网络启动的无盘工作站需要这个，普通用户不需要。
+[] IP: multicast routing，多重传播路由，没有特殊需求可以不选。
+[ ] IP: TCP syncookie support，抵抗SYN flood攻击的好东西,要启用它必须同时启用/proc文件系统和”Sysctlsupport”, 然后在系统启动并挂载了/proc 之后执行”echo 1>/proc/sys/net/ipv4/tcp_syncookies”命令，不清楚可以不选。
+[] TCP: advanced congestion control —>，高级拥塞控制,如果没有特殊需求(比如无线网络)就别选了,内核会自动将默认的拥塞控制设为”Cubic”并将”Reno”作为候补，可以不选。如果网络用处较多，还是选上为好（如网络视频服务器）。 关于拥塞控制，见tcp拥塞控制.doc文档。
+Device Drivers
+	Generic Driver Options —>，通用选项
+[ ] Maintain a devtmpfs filesystem to mount at /dev，让devtmpfs文件系统安装在/dev，不清楚可以不选。
+[ ] Prevent firmware from being built，不编译固件（固化的软件，如bios）.固件一般是随硬件的驱动程序提供的,仅在更新固件的时候才需要重新编译。可以不选，但想要更新固件的话就要重新编译内核了
+2019.04.08
+对于python版本低于3.5的，需要安装python3.5
+https://blog.csdn.net/fireflychh/article/details/78195778
+
