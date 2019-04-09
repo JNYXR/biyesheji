@@ -380,3 +380,8 @@ Device Drivers
 对于python版本低于3.5的，需要安装python3.5
 https://blog.csdn.net/fireflychh/article/details/78195778
 
+2019.04.09
+pip3安装超时问题
+可以直接去对应的网站进行下载对应的xxx.whl，浏览器下载失败可继续下载
+下载完成之后找到对应文件夹，在终端中打开
+pip3 install xxxxx.whl --user
