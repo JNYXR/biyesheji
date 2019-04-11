@@ -1,0 +1,17 @@
+from tensorflow.python.tools import inspect_checkpoint as chkp
+import tensorflow as tf
+
+saver = tf.train.import_meta_graph("/home/ubuntu/PycharmProjects/untitled/code_test/ep436-step273000-loss0.002.meta", clear_devices=True)
+
+#【敲黑板！】这里就是填写输出节点名称惹
+output_nodes = ["12_conv/kernel"]
+
+with tf.Session(graph=tf.get_default_graph()) as sess:
+    input_graph_def = sess.graph.as_graph_def()
+    saver.restore(sess, "/home/ubuntu/PycharmProjects/untitled/code_test/ep436-step273000-loss0.002")
+    output_graph_def = tf.graph_util.convert_variables_to_constants(sess,
+                                                                    input_graph_def,
+                                                                    output_nodes)
+    with open("frozen_model_b.pb", "wb") as f:
+        f.write(output_graph_def.SerializeToString())
+        print("end")
